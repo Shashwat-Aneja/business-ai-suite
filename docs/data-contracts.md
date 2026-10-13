@@ -44,6 +44,14 @@ For model-backed tools, include or log:
 - Units and currency, where applicable
 - Validation warnings and assumptions
 
+## Forecast evaluation safeguards
+
+- Keep validation rows later in time than training rows; do not randomly shuffle time-series observations.
+- Report the forecast horizon and the baseline used for comparison.
+- Include at least one scale-aware error metric, such as MAE or RMSE, and state its units.
+- Flag negative predicted inventory as a projected stockout, not physically possible stock.
+- Record when history is too short or contains gaps that make a forecast unreliable.
+
 ## Compatibility principle
 
 When a schema changes, update the producing tool, its tests, and this contract together. Downstream tools should not have to guess units, periods, class labels, or missing-value behavior.
